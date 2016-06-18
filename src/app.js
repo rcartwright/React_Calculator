@@ -19,7 +19,19 @@ var Calculator = React.createClass({
       currentState: 0
     };
   },
-
+  showNumbers: function () {
+    var numbersArray = [7, 8, 9, 4, 5, 6, 1, 2, 3];
+    var numberButtons = numbersArray.map(function(number) {
+      return (
+         <span className="each-button">{number}</span>
+      );
+    });
+    return (
+      <div className="number-buttons">
+        {numberButtons}
+      </div>
+    );
+},
   render: function() {
     return (
       <div className="calculator">
@@ -27,35 +39,20 @@ var Calculator = React.createClass({
           {this.state.currentState}
         </div>
         <div className="buttons">
+          {this.showNumbers()}
+          <div className="operators">
+            <span className="each-button">*</span>
+            <span className="each-button">-</span>
+            <span className="each-button">+</span>
+          </div>
+          <div className="equal">
+            <span className="each-button">=</span>
+          </div>
 
-        <div>
-        <span>7</span>
-        <span>8</span>
-        <span>9</span>
-        <span>X</span>
-        </div>
-
-        <div>
-        <span>4</span>
-        <span>5</span>
-        <span>6</span>
-        <span>-</span>
-        </div>
-
-        <div>
-        <span>1</span>
-        <span>2</span>
-        <span>3</span>
-        <span>+</span>
-        </div>
-
-        <div>
-        <span>=</span>
-        </div>
 
         </div>
       </div>
-    )
+    );
   }
 });
 

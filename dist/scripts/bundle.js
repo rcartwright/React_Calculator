@@ -19712,7 +19712,19 @@ var Calculator = React.createClass({displayName: "Calculator",
       currentState: 0
     };
   },
-
+  showNumbers: function () {
+    var numbersArray = [7, 8, 9, 4, 5, 6, 1, 2, 3];
+    var numberButtons = numbersArray.map(function(number) {
+      return (
+         React.createElement("span", {className: "each-button"}, number)
+      );
+    });
+    return (
+      React.createElement("div", {className: "number-buttons"}, 
+        numberButtons
+      )
+    );
+},
   render: function() {
     return (
       React.createElement("div", {className: "calculator"}, 
@@ -19720,35 +19732,20 @@ var Calculator = React.createClass({displayName: "Calculator",
           this.state.currentState
         ), 
         React.createElement("div", {className: "buttons"}, 
+          this.showNumbers(), 
+          React.createElement("div", {className: "operators"}, 
+            React.createElement("span", {className: "each-button"}, "*"), 
+            React.createElement("span", {className: "each-button"}, "-"), 
+            React.createElement("span", {className: "each-button"}, "+")
+          ), 
+          React.createElement("div", {className: "equal"}, 
+            React.createElement("span", {className: "each-button"}, "=")
+          )
 
-        React.createElement("div", null, 
-        React.createElement("span", null, "7"), 
-        React.createElement("span", null, "8"), 
-        React.createElement("span", null, "9"), 
-        React.createElement("span", null, "X")
-        ), 
-
-        React.createElement("div", null, 
-        React.createElement("span", null, "4"), 
-        React.createElement("span", null, "5"), 
-        React.createElement("span", null, "6"), 
-        React.createElement("span", null, "-")
-        ), 
-
-        React.createElement("div", null, 
-        React.createElement("span", null, "1"), 
-        React.createElement("span", null, "2"), 
-        React.createElement("span", null, "3"), 
-        React.createElement("span", null, "+")
-        ), 
-
-        React.createElement("div", null, 
-        React.createElement("span", null, "=")
-        )
 
         )
       )
-    )
+    );
   }
 });
 
