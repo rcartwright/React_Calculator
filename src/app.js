@@ -15,9 +15,9 @@ var App = React.createClass({
 
 var Calculator = React.createClass({
   getInitialState: function() {
-    return (
+    return {
       currentState: 0
-    );
+    };
   },
 
   render: function() {
@@ -27,7 +27,7 @@ var Calculator = React.createClass({
       </div>
     )
   }
-}):
+});
 
 
 render((<App />), document.getElementById("app"));
