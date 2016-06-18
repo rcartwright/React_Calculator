@@ -19715,8 +19715,13 @@ var Calculator = React.createClass({displayName: "Calculator",
 
   render: function() {
     return (
-      React.createElement("div", null, 
-      this.state.currentState
+      React.createElement("div", {className: "calculator"}, 
+        React.createElement("div", {className: "show-results"}, 
+          this.state.currentState
+        ), 
+        React.createElement("div", {className: "buttons"}, 
+        "buttons yo"
+        )
       )
     )
   }

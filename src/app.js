@@ -22,8 +22,13 @@ var Calculator = React.createClass({
 
   render: function() {
     return (
-      <div>
-      {this.state.currentState}
+      <div className="calculator">
+        <div className="show-results">
+          {this.state.currentState}
+        </div>
+        <div className="buttons">
+        buttons yo
+        </div>
       </div>
     )
   }
