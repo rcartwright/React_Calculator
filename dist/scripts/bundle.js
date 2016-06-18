@@ -19712,13 +19712,18 @@ var Calculator = React.createClass({displayName: "Calculator",
       currentState: 0
     };
   },
+  clickNumber: function (number) {
+    this.setState({
+      currentState: this.state.currentState + number
+    })
+  },
   showNumbers: function () {
     var numbersArray = [7, 8, 9, 4, 5, 6, 1, 2, 3];
     var numberButtons = numbersArray.map(function(number) {
       return (
-         React.createElement("span", {className: "each-button"}, number)
+         React.createElement("span", {className: "each-button", onClick: this.clickNumber.bind(this, number)}, number)
       );
-    });
+    }, this);
     return (
       React.createElement("div", {className: "number-buttons"}, 
         numberButtons
