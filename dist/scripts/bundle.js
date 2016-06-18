@@ -19720,7 +19720,25 @@ var Calculator = React.createClass({displayName: "Calculator",
           this.state.currentState
         ), 
         React.createElement("div", {className: "buttons"}, 
-        "buttons yo"
+
+        React.createElement("div", null, 
+        React.createElement("span", null, "7"), 
+        React.createElement("span", null, "8"), 
+        React.createElement("span", null, "9")
+        ), 
+
+        React.createElement("div", null, 
+        React.createElement("span", null, "4"), 
+        React.createElement("span", null, "5"), 
+        React.createElement("span", null, "6")
+        ), 
+
+        React.createElement("div", null, 
+        React.createElement("span", null, "1"), 
+        React.createElement("span", null, "2"), 
+        React.createElement("span", null, "3")
+        )
+
         )
       )
     )
