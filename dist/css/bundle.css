@@ -23,7 +23,7 @@
   line-height: 40px;
 }
 .number-buttons {
-  width: 150px;
+  width: 100%;
   display: inline-block;
 }
 .operators {

@@ -37,7 +37,7 @@ var Calculator = React.createClass({
     })
   },
   showNumbers: function () {
-    var numbersArray = [7, 8, 9, 4, 5, 6, 1, 2, 3];
+    var numbersArray = ["CE", "C", "DE", "/", 7, 8, 9, "*", 4, 5, 6, "-", 1, 2, 3, "+"];
     var numberButtons = numbersArray.map(function(number) {
       return (
          <span className="each-button" value={number} onClick={this.onKeyPress}>{number}</span>
@@ -57,11 +57,7 @@ var Calculator = React.createClass({
         </div>
         <div className="buttons">
           {this.showNumbers()}
-          <div className="operators">
-            <span className="each-button" value="*" onClick={this.onKeyPress}>*</span>
-            <span className="each-button" value="-" onClick={this.onKeyPress}>-</span>
-            <span className="each-button" value="+" onClick={this.onKeyPress}>+</span>
-          </div>
+
           <div className="equal">
             <span className="each-button" onClick={this.onCalculate}>&#61;</span>
           </div>
