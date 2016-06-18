@@ -19709,19 +19709,31 @@ var App = React.createClass({displayName: "App",
 var Calculator = React.createClass({displayName: "Calculator",
   getInitialState: function() {
     return {
-      currentState: 0
+      currentState: 0,
     };
   },
-  clickNumber: function (number) {
+  onKeyPress: function (e) {
+    if (this.state.currentState == 0) {
+      this.setState({
+        currentState: e.target.value.toString()
+      })
+    }
+    else {
+      this.setState({
+        currentState: this.state.currentState + e.target.value.toString()
+      })
+    }
+  },
+  onCalculate: function () {
     this.setState({
-      currentState: this.state.currentState + number
+      currentState: eval(this.state.currentState)
     })
   },
   showNumbers: function () {
     var numbersArray = [7, 8, 9, 4, 5, 6, 1, 2, 3];
     var numberButtons = numbersArray.map(function(number) {
       return (
-         React.createElement("span", {className: "each-button", onClick: this.clickNumber.bind(this, number)}, number)
+         React.createElement("span", {className: "each-button", value: number, onClick: this.onKeyPress}, number)
       );
     }, this);
     return (
@@ -19739,15 +19751,13 @@ var Calculator = React.createClass({displayName: "Calculator",
         React.createElement("div", {className: "buttons"}, 
           this.showNumbers(), 
           React.createElement("div", {className: "operators"}, 
-            React.createElement("span", {className: "each-button"}, "*"), 
-            React.createElement("span", {className: "each-button"}, "-"), 
-            React.createElement("span", {className: "each-button"}, "+")
+            React.createElement("span", {className: "each-button", value: "*", onClick: this.onKeyPress}, "*"), 
+            React.createElement("span", {className: "each-button", value: "-", onClick: this.onKeyPress}, "-"), 
+            React.createElement("span", {className: "each-button", value: "+", onClick: this.onKeyPress}, "+")
           ), 
           React.createElement("div", {className: "equal"}, 
-            React.createElement("span", {className: "each-button"}, "=")
+            React.createElement("span", {className: "each-button", onClick: this.onCalculate}, "=")
           )
-
-
         )
       )
     );
