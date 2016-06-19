@@ -19713,6 +19713,25 @@ var Calculator = React.createClass({displayName: "Calculator",
     };
   },
   onKeyPress: function (e) {
+    switch(e.target.value) {
+      case "CE":
+          this.onThisReset();
+          break;
+      case "C":
+          this.onThisReset();
+          break;
+      case "DE":
+          this.deleteOne();
+          break;
+      case "=":
+          this.onCalculate();
+          break;
+      default:
+          this.addToArgument(e);
+    }
+  },
+  addToArgument: function (e) {
+    console.log("addToArgument")
     if (this.state.currentState == 0) {
       this.setState({
         currentState: e.target.value.toString()
@@ -19723,6 +19742,14 @@ var Calculator = React.createClass({displayName: "Calculator",
         currentState: this.state.currentState + e.target.value.toString()
       })
     }
+  },
+  onThisReset: function () {
+    this.setState({
+      currentState: 0
+    })
+  },
+  deleteOne: function () {
+
   },
   onCalculate: function () {
     this.setState({
