@@ -2,7 +2,6 @@
 var React = require('react');
 var render = require('react-dom').render;
 
-
 var App = React.createClass({
   render: function() {
     return (
@@ -56,7 +55,7 @@ var Calculator = React.createClass({
   },
   deleteOne: function () {
     this.setState({
-      currentState: this.state.currentState.substr(0, this.state.currentState.length-1);
+      currentState: this.state.currentState.substr(0, this.state.currentState.length-1)
     })
   },
   onCalculate: function () {
@@ -65,7 +64,7 @@ var Calculator = React.createClass({
     })
   },
   showNumbers: function () {
-    var numbersArray = ["CE", "C", "DE", "/", 7, 8, 9, "*", 4, 5, 6, "-", 1, 2, 3, "+"];
+    var numbersArray = ["CE", "C", "DE", "/", 7, 8, 9, "*", 4, 5, 6, "-", 1, 2, 3, "+", ":)", 0, ".", "="];
     var numberButtons = numbersArray.map(function(number) {
       return (
          <span className="each-button" onClick={this.onKeyPress.bind(this, number)}>{number}</span>
@@ -85,9 +84,6 @@ var Calculator = React.createClass({
         </div>
         <div className="buttons">
           {this.showNumbers()}
-          <div className="equal">
-            <span className="each-button" onClick={this.onCalculate}>&#61;</span>
-          </div>
         </div>
       </div>
     );

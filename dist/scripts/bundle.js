@@ -19695,7 +19695,6 @@ module.exports = require('./lib/React');
 var React = require('react');
 var render = require('react-dom').render;
 
-
 var App = React.createClass({displayName: "App",
   render: function() {
     return (
@@ -19748,9 +19747,8 @@ var Calculator = React.createClass({displayName: "Calculator",
     })
   },
   deleteOne: function () {
-    var newString = this.state.currentState.substr(0, this.state.currentState.length-1);
     this.setState({
-      currentState: newString
+      currentState: this.state.currentState.substr(0, this.state.currentState.length-1)
     })
   },
   onCalculate: function () {
@@ -19759,7 +19757,7 @@ var Calculator = React.createClass({displayName: "Calculator",
     })
   },
   showNumbers: function () {
-    var numbersArray = ["CE", "C", "DE", "/", 7, 8, 9, "*", 4, 5, 6, "-", 1, 2, 3, "+"];
+    var numbersArray = ["CE", "C", "DE", "/", 7, 8, 9, "*", 4, 5, 6, "-", 1, 2, 3, "+", ":)", 0, ".", "="];
     var numberButtons = numbersArray.map(function(number) {
       return (
          React.createElement("span", {className: "each-button", onClick: this.onKeyPress.bind(this, number)}, number)
@@ -19778,11 +19776,7 @@ var Calculator = React.createClass({displayName: "Calculator",
           this.state.currentState
         ), 
         React.createElement("div", {className: "buttons"}, 
-          this.showNumbers(), 
-
-          React.createElement("div", {className: "equal"}, 
-            React.createElement("span", {className: "each-button", onClick: this.onCalculate}, "=")
-          )
+          this.showNumbers()
         )
       )
     );
