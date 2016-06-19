@@ -19,8 +19,8 @@ var Calculator = React.createClass({
       currentState: 0,
     };
   },
-  onKeyPress: function (e) {
-    switch(e.target.value) {
+  onKeyPress: function (value) {
+    switch(value) {
       case "CE":
           this.onThisReset();
           break;
@@ -31,22 +31,21 @@ var Calculator = React.createClass({
           this.deleteOne();
           break;
       case "=":
-          this.onCalculate();
+          this.onCalculate(value);
           break;
       default:
-          this.addToArgument(e);
+          this.addToArgument(value);
     }
   },
-  addToArgument: function (e) {
-    console.log("addToArgument")
+  addToArgument: function (value) {
     if (this.state.currentState == 0) {
       this.setState({
-        currentState: e.target.value.toString()
+        currentState: value.toString()
       })
     }
     else {
       this.setState({
-        currentState: this.state.currentState + e.target.value.toString()
+        currentState: this.state.currentState + value.toString()
       })
     }
   },
@@ -56,7 +55,9 @@ var Calculator = React.createClass({
     })
   },
   deleteOne: function () {
-
+    this.setState({
+      currentState: this.state.currentState.substr(0, this.state.currentState.length-1);
+    })
   },
   onCalculate: function () {
     this.setState({
@@ -67,7 +68,7 @@ var Calculator = React.createClass({
     var numbersArray = ["CE", "C", "DE", "/", 7, 8, 9, "*", 4, 5, 6, "-", 1, 2, 3, "+"];
     var numberButtons = numbersArray.map(function(number) {
       return (
-         <span className="each-button" value={number} onClick={this.onKeyPress}>{number}</span>
+         <span className="each-button" onClick={this.onKeyPress.bind(this, number)}>{number}</span>
       );
     }, this);
     return (
@@ -84,7 +85,6 @@ var Calculator = React.createClass({
         </div>
         <div className="buttons">
           {this.showNumbers()}
-
           <div className="equal">
             <span className="each-button" onClick={this.onCalculate}>&#61;</span>
           </div>

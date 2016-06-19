@@ -19712,8 +19712,8 @@ var Calculator = React.createClass({displayName: "Calculator",
       currentState: 0,
     };
   },
-  onKeyPress: function (e) {
-    switch(e.target.value) {
+  onKeyPress: function (value) {
+    switch(value) {
       case "CE":
           this.onThisReset();
           break;
@@ -19724,22 +19724,21 @@ var Calculator = React.createClass({displayName: "Calculator",
           this.deleteOne();
           break;
       case "=":
-          this.onCalculate();
+          this.onCalculate(value);
           break;
       default:
-          this.addToArgument(e);
+          this.addToArgument(value);
     }
   },
-  addToArgument: function (e) {
-    console.log("addToArgument")
+  addToArgument: function (value) {
     if (this.state.currentState == 0) {
       this.setState({
-        currentState: e.target.value.toString()
+        currentState: value.toString()
       })
     }
     else {
       this.setState({
-        currentState: this.state.currentState + e.target.value.toString()
+        currentState: this.state.currentState + value.toString()
       })
     }
   },
@@ -19749,7 +19748,10 @@ var Calculator = React.createClass({displayName: "Calculator",
     })
   },
   deleteOne: function () {
-
+    var newString = this.state.currentState.substr(0, this.state.currentState.length-1);
+    this.setState({
+      currentState: newString
+    })
   },
   onCalculate: function () {
     this.setState({
@@ -19760,7 +19762,7 @@ var Calculator = React.createClass({displayName: "Calculator",
     var numbersArray = ["CE", "C", "DE", "/", 7, 8, 9, "*", 4, 5, 6, "-", 1, 2, 3, "+"];
     var numberButtons = numbersArray.map(function(number) {
       return (
-         React.createElement("span", {className: "each-button", value: number, onClick: this.onKeyPress}, number)
+         React.createElement("span", {className: "each-button", onClick: this.onKeyPress.bind(this, number)}, number)
       );
     }, this);
     return (
