@@ -63,16 +63,16 @@ var Calculator = React.createClass({
       currentState: eval(this.state.currentState)
     })
   },
-  showNumbers: function () {
-    var numbersArray = ["CE", "C", "DE", "/", 7, 8, 9, "*", 4, 5, 6, "-", 1, 2, 3, "+", ":)", 0, ".", "="];
-    var numberButtons = numbersArray.map(function(number) {
+  showButtons: function () {
+    var values = ["CE", "C", "DE", "/", 7, 8, 9, "*", 4, 5, 6, "-", 1, 2, 3, "+", ":)", 0, ".", "="];
+    var buttons = values.map(function(value, i) {
       return (
-         <span className="each-button" onClick={this.onKeyPress.bind(this, number)}>{number}</span>
+         <span className="each-button" key={i} onClick={this.onKeyPress.bind(this, value)}>{value}</span>
       );
     }, this);
     return (
       <div className="number-buttons">
-        {numberButtons}
+        {buttons}
       </div>
     );
 },
@@ -83,7 +83,7 @@ var Calculator = React.createClass({
           {this.state.currentState}
         </div>
         <div className="buttons">
-          {this.showNumbers()}
+          {this.showButtons()}
         </div>
       </div>
     );
