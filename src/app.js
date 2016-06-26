@@ -80,7 +80,9 @@ var Calculator = React.createClass({
     return (
       <div className="calculator">
         <div className="show-results">
-          {this.state.currentState}
+          <p>
+            {this.state.currentState}
+          </p>
         </div>
         <div className="buttons">
           {this.showButtons()}
